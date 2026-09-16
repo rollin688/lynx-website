@@ -298,7 +298,8 @@ export function getLangPrefix(lang: string) {
 
 /** Version prefixes the site is served under, such as `/next`. */
 const VERSION_PREFIXES = versionJson.versions
-  .map((version) => toBasePrefix(version.docs_link))
+  .filter((version) => 'docs_link' in version && version.docs_link)
+  .map((version) => toBasePrefix((version as { docs_link: string }).docs_link))
   .filter(Boolean);
 
 /**
