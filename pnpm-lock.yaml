@@ -133,8 +133,8 @@ importers:
         specifier: workspace:*
         version: link:packages/lynx-compat-data
       '@lynx-js/lynx-stack-docs':
-        specifier: https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@084a6da
-        version: https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@084a6da
+        specifier: https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@e0b03ca
+        version: https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@e0b03ca
       '@lynx-js/react':
         specifier: ^0.121.1
         version: 0.121.1(@lynx-js/types@3.9.0)(@types/react@18.3.18)
@@ -1734,8 +1734,8 @@ packages:
   '@lynx-js/lynx-core@0.1.3':
     resolution: {integrity: sha512-uWzKKYJUK4Q09ZRZxWSAFINnmZb9piWPbvWF9SkLn+3snBl9u/BJa4ekPRcKWAhBmpbtxWH1x27fxe3Q3p5l3Q==}
 
-  '@lynx-js/lynx-stack-docs@https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@084a6da':
-    resolution: {integrity: sha512-V2ZIFy6rsWOwAFg56LOwAcSn9Xd8moG0x+6aAy/MbfhCBn4yDKQZIsfMXwAUGSM+ov6PqTVQ/cBqyNE9g2kueA==, tarball: https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@084a6da}
+  '@lynx-js/lynx-stack-docs@https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@e0b03ca':
+    resolution: {integrity: sha512-ig2xS60zx5XxwjKMjUr85omH4I8k8/n9snjNO3HTq5gEmFrysKUdHBliTNMYn92XxcbCWJapwaWGjOtp36vyYw==, tarball: https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@e0b03ca}
     version: 0.0.0
 
   '@lynx-js/lynx-ui-button@3.133.1':
@@ -8336,7 +8336,7 @@ snapshots:
 
   '@lynx-js/lynx-core@0.1.3': {}
 
-  '@lynx-js/lynx-stack-docs@https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@084a6da': {}
+  '@lynx-js/lynx-stack-docs@https://pkg.pr.new/lynx-family/lynx-stack/@lynx-js/lynx-stack-docs@e0b03ca': {}
 
   '@lynx-js/lynx-ui-button@3.133.1(@lynx-js/react@0.114.0(@lynx-js/types@3.9.0)(@types/react@18.3.18))(@lynx-js/types@3.9.0)(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:

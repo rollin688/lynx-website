@@ -17,7 +17,7 @@ const localeConfig = {
 const apiReferenceExamples = [
   {
     id: 'react-clone-element-example',
-    apiReference: 'api/react/functions.mdx',
+    apiReference: 'api/react/functions/cloneElement.mdx',
     anchor: 'cloneelement',
     locales: ['en', 'zh'],
     goProps: {
@@ -30,7 +30,7 @@ const apiReferenceExamples = [
   },
   {
     id: 'react-create-element-example',
-    apiReference: 'api/react/functions.mdx',
+    apiReference: 'api/react/functions/createElement.mdx',
     anchor: 'createelement',
     locales: ['en', 'zh'],
     goProps: {
@@ -43,7 +43,7 @@ const apiReferenceExamples = [
   },
   {
     id: 'react-create-portal-example',
-    apiReference: 'api/react/functions.mdx',
+    apiReference: 'api/react/functions/createPortal.mdx',
     anchor: 'createportal',
     locales: ['en', 'zh'],
     goProps: {
@@ -170,7 +170,8 @@ function createOverlays(examples) {
         id,
         anchor,
         target: `docs/${locale}/${apiReference}`,
-        content: `#### ${heading}\n\n${go}`,
+        heading,
+        go,
       });
     }
   }
@@ -225,7 +226,7 @@ function ensureLynxImport(content) {
 function insertAtEndOfSection(content, anchor, block) {
   const lines = content.split('\n');
   const headingIndex = lines.findIndex(
-    (line) => /^#{2,6} /.test(line) && line.includes(`\\{#${anchor}\\}`),
+    (line) => /^#{1,6} /.test(line) && line.includes(`\\{#${anchor}\\}`),
   );
   if (headingIndex === -1) {
     throw new Error(`No heading with anchor "${anchor}" found.`);
@@ -252,7 +253,7 @@ function insertAtEndOfSection(content, anchor, block) {
   while (end > headingIndex + 1 && lines[end - 1] === '') {
     end--;
   }
-  lines.splice(end, 0, '', block, '');
+  lines.splice(end, 0, '', block(level), '');
   return lines.join('\n');
 }
 
@@ -275,14 +276,15 @@ for (const [target, pageOverlays] of byTarget) {
   }
 
   let updated = ensureLynxImport(original);
-  for (const { id, anchor, content } of pageOverlays) {
+  for (const { id, anchor, heading, go } of pageOverlays) {
     updated = removeExistingOverlay(updated, id);
     const startMarker = `{/* api-doc-overlay:${id}:start */}`;
     const endMarker = `{/* api-doc-overlay:${id}:end */}`;
     updated = insertAtEndOfSection(
       updated,
       anchor,
-      `${startMarker}\n\n${content.trim()}\n\n${endMarker}`,
+      (level) =>
+        `${startMarker}\n\n${'#'.repeat(Math.min(level + 1, 6))} ${heading}\n\n${go}\n\n${endMarker}`,
     );
   }
 

@@ -59,7 +59,7 @@ To solve this, create a `src/rspeedy-env.d.ts` file, and add the following conte
 Lynx provides default types, but you may need to extend or customize certain type definitions for your application.
 
 - [`GlobalProps`](#globalprops): extends the type definition for `lynx.__globalProps`
-- [`InitData`](#initdata): extends the return type of [`useInitData()`](/api/react/hooks#useinitdata)
+- [`InitData`](#initdata): extends the return type of [`useInitData()`](/api/react/hooks/useInitData)
 - [`IntrinsicElements`](#intrinsicelements): extends the type definition for elements (e.g: you may have your own `<input>` element)
 - [`NativeModules`](#nativemodules): extends the type definition for [custom native modules](/guide/use-native-modules.mdx).
 

@@ -14,7 +14,7 @@ const location = (path: string) => {
 test('redirects old API URLs', () => {
   assert.equal(
     location('/api/react/Function.useInitData'),
-    '/api/react/hooks#useinitdata',
+    '/api/react/hooks/useInitData',
   );
   assert.equal(location('/api/rspeedy/'), '/api/config/');
   assert.equal(
@@ -41,7 +41,7 @@ test('keeps locale and version prefixes', () => {
 test('keeps the query string', () => {
   assert.equal(
     location('/api/react/Function.useInitData.html?utm_source=x'),
-    '/api/react/hooks?utm_source=x#useinitdata',
+    '/api/react/hooks/useInitData?utm_source=x',
   );
 });
 
