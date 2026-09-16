@@ -108,6 +108,9 @@ jobs:
       - name: API Redirect Edge Function Test
         run: node --test netlify/edge-functions/api-redirects/index.test.ts
 
+      - name: Subsite Route Test
+        run: node --test shared-subsite-routes.test.ts
+
   # Check committed documents with MDX dependencies, without running prepare.
   # Validate separately verifies generated documentation after root prepare.
   # Keep installation explicit and separate from dependency-free generator tests.
