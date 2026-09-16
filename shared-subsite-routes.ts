@@ -56,31 +56,26 @@ export type SubsiteRouteOptions = {
   subsites: readonly string[];
   /** Subsite of each package page, from {@link apiPackageSubsites}. */
   packageSubsites?: Record<string, string>;
-  /** Version prefixes the site is served under, such as `/next`. */
-  versionPrefixes?: readonly string[];
 };
 
-function normalize(
-  pathname: string,
-  versionPrefixes: readonly string[],
-): string {
-  let route = pathname.replace(/\.html$/, '');
-  for (const prefix of versionPrefixes) {
-    if (route === prefix || route.startsWith(`${prefix}/`)) {
-      route = route.slice(prefix.length);
-      break;
-    }
-  }
-  route = route.replace(/^\/zh(?=\/|$)/, '').replace(/\/$/, '');
+/** The version a build is served under, as `version.json` spells it: `/next`, `/4.0`. */
+const VERSION_PREFIX = /^\/(?:next|\d+(?:\.\d+)*)(?=\/|$)/;
+
+function normalize(pathname: string): string {
+  const route = pathname
+    .replace(/\.html$/, '')
+    .replace(VERSION_PREFIX, '')
+    .replace(/^\/zh(?=\/|$)/, '')
+    .replace(/\/$/, '');
   return route || '/';
 }
 
 /** The subsite a route belongs to, or `undefined` when it belongs to none. */
 export function findSubsiteValue(
   pathname: string,
-  { subsites, packageSubsites = {}, versionPrefixes = [] }: SubsiteRouteOptions,
+  { subsites, packageSubsites = {} }: SubsiteRouteOptions,
 ): string | undefined {
-  const route = normalize(pathname, versionPrefixes);
+  const route = normalize(pathname);
 
   const apiRoute = API_ROUTE_SUBSITES.find(([pattern]) => pattern.test(route));
   if (apiRoute) {

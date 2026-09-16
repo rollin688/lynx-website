@@ -2,7 +2,6 @@
  * Sub-sites and shared docs configuration
  */
 import versionJson from './docs/public/version.json';
-import { findSubsiteValue } from './shared-subsite-routes';
 
 export const SITE_BASE = versionJson.versions.find(
   (version) => version.version_number === versionJson.current_version,
@@ -294,29 +293,4 @@ export function getUrlPathPrefix(pathname: string, sharedPaths: string[]) {
 export function getLangPrefix(lang: string) {
   // The constant here must match the configured lang in rspress.config.ts.
   return lang === 'en' ? '' : `/${lang}`;
-}
-
-/** Version prefixes the site is served under, such as `/next`. */
-const VERSION_PREFIXES = versionJson.versions
-  .filter((version) => 'docs_link' in version && version.docs_link)
-  .map((version) => toBasePrefix((version as { docs_link: string }).docs_link))
-  .filter(Boolean);
-
-/**
- * The subsite a route belongs to, defaulting to the Lynx guide.
- *
- * @param packageSubsites - {@link apiPackageSubsites} over the synced
- * `api/packages/_meta.json`, which groups the API reference by subsite.
- */
-export function subsiteOfRoute(
-  pathname: string,
-  packageSubsites?: Record<string, string>,
-) {
-  return (
-    findSubsiteValue(pathname, {
-      subsites: SUBSITES_CONFIG.map((subsite) => subsite.value),
-      packageSubsites,
-      versionPrefixes: VERSION_PREFIXES,
-    }) ?? 'guide'
-  );
 }

@@ -20,7 +20,6 @@ const subsiteOf = (pathname: string) =>
   findSubsiteValue(pathname, {
     subsites: ['guide', 'rspeedy', 'react', 'ui', 'lynxtron'],
     packageSubsites: apiPackageSubsites(meta),
-    versionPrefixes: ['/next'],
   });
 
 test('package pages keep the subsite of their section', () => {
@@ -39,6 +38,7 @@ test('config and ReactLynx routes keep their subsite', () => {
 
 test('version and language prefixes and .html suffixes', () => {
   assert.equal(subsiteOf('/next/api/packages/react-umd.html'), 'react');
+  assert.equal(subsiteOf('/4.0/api/packages/react-signals'), 'react');
   assert.equal(subsiteOf('/zh/api/packages/react-signals'), 'react');
   assert.equal(subsiteOf('/next/zh/api/config/mode.html'), 'rspeedy');
   assert.equal(subsiteOf('/next/zh/api/react/hooks'), 'react');
